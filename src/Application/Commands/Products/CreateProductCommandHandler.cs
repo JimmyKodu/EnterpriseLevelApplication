@@ -26,8 +26,7 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
             StockQuantity = request.StockQuantity,
             Sku = request.Sku,
             CategoryId = request.CategoryId,
-            IsActive = true,
-            CreatedAt = DateTime.UtcNow
+            IsActive = true
         };
 
         await _productRepository.AddAsync(product, cancellationToken);
