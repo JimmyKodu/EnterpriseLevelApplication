@@ -42,7 +42,8 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Create([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Creating new product: {ProductName}", command.Name);
+        // Using structured logging with sanitized parameter
+        _logger.LogInformation("Creating new product with name length: {NameLength}", command.Name?.Length ?? 0);
 
         var productId = await _mediator.Send(command, cancellationToken);
 
